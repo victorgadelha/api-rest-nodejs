@@ -3,9 +3,11 @@ import { z } from 'zod';
 import { knex } from '../database';
 import { randomUUID } from 'node:crypto';
 import { checkSessionIdExists } from '../middlewares/check-session-id-exists';
-import { request } from 'node:http';
 
 export async function transactionRoutes(app: FastifyInstance) {
+	app.addHook('preHandler', async (request, reply) => {
+		console.log(`${request.method} ${request.url}`);
+	});
 	app.get(
 		'/',
 		{ preHandler: [checkSessionIdExists] },

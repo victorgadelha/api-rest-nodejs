@@ -1,10 +1,9 @@
 import fastify from 'fastify';
 import { env } from './env';
-import type { FastifyCookieOptions } from '@fastify/cookie';
 import cookie from '@fastify/cookie';
 import { transactionRoutes } from './routes/transactions';
 
-const app = fastify();
+export const app = fastify();
 
 app.register(cookie, {
 	secret: 'my-secret',
@@ -15,7 +14,7 @@ app.register(cookie, {
 		httpOnly: true,
 		secure: true,
 	},
-} as FastifyCookieOptions);
+});
 
 app.register(transactionRoutes, {
 	prefix: 'transactions',

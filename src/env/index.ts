@@ -1,9 +1,15 @@
 import 'dotenv/config';
 import { z } from 'zod';
 
+/* 
+
+TODO: To Make the variable PORT work how it intended
+
+*/
+
 const envSchema = z.object({
 	NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
-	DATABASE_URL: z.string()//,
+	DATABASE_URL: z.string(), //,
 	//PORT: z.number().default(3333),
 });
 
